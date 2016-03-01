@@ -1,9 +1,5 @@
 var request = require('request');
-var config ={
-  loginURL :"",
-  signURL :"",
-
-}
+var config = require('./config');
 
 function login(username, password,callback) {
   var callBackData = {};
@@ -20,12 +16,12 @@ function login(username, password,callback) {
     } else {
       var jsonBody = JSON.parse(body);
       if(response.statusCode!=201){
-        callBackData.statusCode = jsonBody.statusCode
+        callBackData.status = jsonBody.status
         callback(callBackData)
 
       }else{
-        callBackData.statusCode = jsonBody.statusCode
-        callBackData.token = jsonBody.body.token
+        callBackData.status = jsonBody.status
+        callBackData.token = jsonBody.token
         callback(callBackData)
       }
     }
@@ -49,14 +45,13 @@ function signup(usrinfo,password,callback) {
     } else {
       var jsonBody = JSON.parse(body);
       if(jsonBody.statusCode!=201){
-        callBackData.statusCode = jsonBody.statusCode
+        callBackData.status = jsonBody.status
         callback(callBackData)
 
       }else{
-        callBackData.statusCode = jsonBody.statusCode
-        callBackData.token = jsonBody.body.token
+        callBackData.status = jsonBody.status
+        callBackData.token = jsonBody.token
         callback(callBackData)
-
       }
     }
   });
