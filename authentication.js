@@ -22,6 +22,7 @@ function login(username, password,callback) {
       }else{
         callBackData.status = jsonBody.status
         callBackData.token = jsonBody.token
+        callBackData.xmppPassword = jsonBody.xmppPassword
         callback(callBackData)
       }
     }
@@ -46,11 +47,11 @@ function signup(usrinfo,password,callback) {
       var jsonBody = JSON.parse(body);
       if(jsonBody.statusCode!=201){
         callBackData.status = jsonBody.status
+        callBackData.message = jsonBody.message
         callback(callBackData)
 
       }else{
         callBackData.status = jsonBody.status
-        callBackData.token = jsonBody.token
         callback(callBackData)
       }
     }
